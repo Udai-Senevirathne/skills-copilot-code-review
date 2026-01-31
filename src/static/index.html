@@ -12,6 +12,9 @@
     />
   </head>
   <body>
+    <!-- Announcement Banner Container (populated dynamically) -->
+    <div id="announcements-container"></div>
+    
     <header>
       <h1>Mergington High School</h1>
       <h2>Extracurricular Activities</h2>
@@ -23,6 +26,7 @@
           </button>
           <div id="user-info" class="hidden">
             <span id="display-name"></span>
+            <button id="manage-announcements-button" class="hidden">📢 Manage Announcements</button>
             <button id="logout-button">Logout</button>
           </div>
         </div>
@@ -131,6 +135,46 @@
           <button type="submit">Login</button>
         </form>
         <div id="login-message" class="hidden message"></div>
+      </div>
+    </div>
+
+    <!-- Announcements Management Modal -->
+    <div id="announcements-modal" class="modal hidden">
+      <div class="modal-content announcements-modal-content">
+        <span class="close-announcements-modal">&times;</span>
+        <h3>📢 Manage Announcements</h3>
+        
+        <!-- Add/Edit Announcement Form -->
+        <div class="announcement-form-section">
+          <h4 id="form-title">Create New Announcement</h4>
+          <form id="announcement-form">
+            <div class="form-group">
+              <label for="announcement-message">Message:</label>
+              <textarea id="announcement-message" required placeholder="Enter announcement message..." rows="3"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="announcement-start-date">Start Date (Optional):</label>
+                <input type="datetime-local" id="announcement-start-date" />
+              </div>
+              <div class="form-group">
+                <label for="announcement-expiration-date">Expiration Date (Required):</label>
+                <input type="datetime-local" id="announcement-expiration-date" required />
+              </div>
+            </div>
+            <input type="hidden" id="editing-announcement-id" value="" />
+            <div class="form-actions">
+              <button type="submit" id="save-announcement-button">Save Announcement</button>
+              <button type="button" id="cancel-edit-button" class="hidden">Cancel Edit</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Existing Announcements List -->
+        <div class="announcements-list-section">
+          <h4>Existing Announcements</h4>
+          <div id="announcements-list"></div>
+        </div>
       </div>
     </div>
 
